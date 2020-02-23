@@ -1,0 +1,6 @@
+.popup__content.popup__content_image {
+  border-radius: 0px;
+  width: fit-content;
+  padding: 0;
+  background-color: transparent;
+}
