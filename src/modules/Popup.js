@@ -1,4 +1,4 @@
-class Popup {
+export default class Popup {
 
     constructor() {
         this.editUserInfoForm = document.forms.edit;

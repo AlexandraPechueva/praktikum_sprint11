@@ -1,4 +1,6 @@
-class PopupCard extends Popup {
+import Popup from './Popup.js';
+
+export default class PopupCard extends Popup {
     constructor() {
         super();
 

@@ -1,10 +1,10 @@
-class Api {
+export default class Api {
     constructor(requestData) {
         this.requestData = requestData;
     }
 
     getUserInfo() {
-        return fetch(`http://${this.requestData.address}/cohort7/users/me`, {
+        return fetch(`${this.requestData.address}/users/me`, {
             headers: {
                 authorization: this.requestData.token
             }
@@ -23,7 +23,7 @@ class Api {
     }
 
     getInitCards() {
-        return fetch(`http://${this.requestData.address}/cohort7/cards`, {
+        return fetch(`${this.requestData.address}/cards`, {
             headers: {
                 authorization: this.requestData.token
             }
@@ -43,7 +43,7 @@ class Api {
     updateUserInfo() {
         this.editUserInfoForm = document.forms.edit;
 
-        return fetch(`http://${this.requestData.address}/cohort7/users/me`, {
+        return fetch(`${this.requestData.address}/users/me`, {
             method: 'PATCH',
             headers: {
                 authorization: this.requestData.token,
@@ -92,7 +92,7 @@ class Api {
 
     addCard() {
         this.addCardPopupForm = document.forms.newPlace
-        return fetch(`http://${this.requestData.address}/cohort7/cards`, {
+        return fetch(`${this.requestData.address}/cards`, {
             method: 'POST',
             headers: {
                 authorization: this.requestData.token,
@@ -119,7 +119,7 @@ class Api {
 
     updateUserAvatar() {
         this.avatarForm = document.forms.avatar;
-        return fetch(`http://${this.requestData.address}/cohort7/users/me/avatar`, {
+        return fetch(`${this.requestData.address}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
                 authorization: this.requestData.token,
@@ -142,7 +142,7 @@ class Api {
     }
 
     deleteCard(cardId) {
-        return fetch(`http://${this.requestData.address}/cohort7/cards/${cardId}`, {
+        return fetch(`${this.requestData.address}/cards/${cardId}`, {
             method: 'Delete',
             headers: {
                 authorization: this.requestData.token,
@@ -163,7 +163,7 @@ class Api {
     }
 
     setLike(cardId) {
-        return fetch(`http://${this.requestData.address}/cohort7/cards/like/${cardId}`, {
+        return fetch(`${this.requestData.address}/cards/like/${cardId}`, {
             method: 'PUT',
             headers: {
                 authorization: this.requestData.token,
@@ -185,7 +185,7 @@ class Api {
 
 
     deleteLike(cardId) {
-        return fetch(`http://${this.requestData.address}/cohort7/cards/like/${cardId}`, {
+        return fetch(`${this.requestData.address}/cards/like/${cardId}`, {
             method: 'DELETE',
             headers: {
                 authorization: this.requestData.token,

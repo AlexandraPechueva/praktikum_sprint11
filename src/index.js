@@ -1,3 +1,16 @@
+import './pages/index.css';
+import './images/logo.svg';
+import './images/close.svg';
+import Api from './modules/Api.js';
+import Card from './modules/Card.js';
+import CardList from './modules/CardList.js';
+import FormValidator from './modules/FormValidator.js';
+import PopupAvatar from './modules/PopupAvatar.js';
+import PopupCard from './modules/PopupCard.js';
+import PopupImage from './modules/PopupImage.js';
+import PopupProfile from './modules/PopupProfile.js';
+import UserInfo from './modules/UserInfo';
+
 (function () {
     let userInfo;
     let popupProfile;
@@ -20,8 +33,10 @@
     let myCards = [];
     let allCards = [];
 
+    const serverUrl = NODE_ENV === "development" ? "http://praktikum.tk/cohort7" : "https://praktikum.tk/cohort7";
+
     const requestData = {
-        address: '95.216.175.5',
+        address: serverUrl,
         token: '9f9195c9-a467-4a37-897c-2baf9bb42b3e'
     }
 
@@ -43,7 +58,6 @@
 
     api.getUserInfo()
         .then(result => {
-            console.log(result)
             userId = result._id;
             userInfoName.textContent = result.name;
             userInfoJob.textContent = result.about;
@@ -57,18 +71,18 @@
 
         })
 
-    api.getInitCards()
-        .then(result => {
-            allCards = result.slice();
-            console.log(allCards);
+    function getInitCards() {
+        api.getInitCards()
+            .then(result => {
+                allCards = result.slice();
+                cardList.render(cards, result, userId);
+                myCards = result.filter(item => item.owner._id == userId);
+            });
+    }
 
-            cardList.render(cards, result, userId);
-
-            myCards = result.filter(item => item.owner._id == userId);
-        });
+    getInitCards();
 
     function addCardHandler(event) {
-        popupAdd = document.getElementById('newPlace');
         const button = document.querySelector('.popup__button_symb');
         event.preventDefault();
         api.renderLoading(true, button);
@@ -76,8 +90,9 @@
         setTimeout(() => {
             api.addCard()
                 .then(result => {
-                    const newCard = card.createCard(result.name, result.link);
-                    cardList.addCard(newCard)
+                    const newCard = card.createCard(result.name, result.link, 0);
+                    cardList.addCard(newCard);
+                    getInitCards();
                     api.renderLoading(false, button);
                 })
                 .then(() => {
@@ -85,6 +100,7 @@
                     popupCard.close();
                 })
         }, 1000);
+        //
     }
 
     cardsContainer.addEventListener('click', cardsActionsHandler);
@@ -95,6 +111,7 @@
             event.stopPropagation()
 
             const cardLink = event.target.closest('.place-card__image').style.backgroundImage.slice(4, -1).replace(/"/g, "");
+
             const cardToDelete = myCards.filter(item => item.link === cardLink)[0]._id;
             api.deleteCard(cardToDelete);
 
@@ -178,7 +195,4 @@
     newPlaceForm.setEventListeners();
     editForm.setEventListeners();
     avatarForm.setEventListeners()
-
-
 })();
-

@@ -1,4 +1,4 @@
-class CardList {
+export default class CardList {
     constructor(card, container) {
         this.card = card;
         this.container = container;
@@ -7,6 +7,7 @@ class CardList {
     render(cards, initCards, userId) {
         const ownersId = [];
         const likes = [];
+        cards = [];
         initCards.forEach((item, i) => {
             cards.push(this.card.createCard(item.name, item.link, item.likes.length));
             ownersId[i] = item.owner._id;
@@ -35,4 +36,5 @@ class CardList {
     addCard(newCard) {
         this.container.appendChild(newCard);
     }
+
 }
