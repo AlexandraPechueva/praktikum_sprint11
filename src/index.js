@@ -1,6 +1,4 @@
 import './pages/index.css';
-import './images/logo.svg';
-import './images/close.svg';
 import Api from './modules/Api.js';
 import Card from './modules/Card.js';
 import CardList from './modules/CardList.js';
@@ -24,12 +22,13 @@ import UserInfo from './modules/UserInfo';
 
     const userInfoName = document.querySelector('.user-info__name');
     const userInfoJob = document.querySelector('.user-info__job');
-    const userInfoPhoto = document.querySelector(".user-info__photo");
+    const userInfoPhoto = document.querySelector('.user-info__photo');
 
     const popupCard = new PopupCard();
     const popupImage = new PopupImage();
     const popupAvatar = new PopupAvatar();
 
+    const rootContainer = document.querySelector('.root');
     let myCards = [];
     let allCards = [];
 
@@ -100,10 +99,40 @@ import UserInfo from './modules/UserInfo';
                     popupCard.close();
                 })
         }, 1000);
-        //
     }
 
-    cardsContainer.addEventListener('click', cardsActionsHandler);
+    function isPopupOpen(event) {
+        let currentPopup = null;
+
+        if (event.type === "keydown") {
+            const root = Array.from(rootContainer.children);
+            root.forEach(item => {
+                if (item.classList.contains('popup_is-opened')) {
+                    currentPopup = item;
+                }
+            })
+        }
+        else {
+            if (!event.target.classList.contains('popup__content')) {
+                currentPopup = event.target;
+            }
+        }
+
+        if (currentPopup !== null && currentPopup.classList.contains('popup')) {
+            if (currentPopup.id === 'new-place') currentPopup = popupCard;
+            if (currentPopup.id === 'edit') currentPopup = popupProfile;
+            if (currentPopup.id === 'avatar') currentPopup = popupAvatar;
+            if (currentPopup.id === 'big-photo') currentPopup = popupImage;
+            currentPopup.close();
+        }
+
+    }
+
+    document.onkeydown = function (event) {
+        if (event.key === "Escape") {
+            isPopupOpen(event);
+        }
+    }
 
     function cardsActionsHandler(event) {
         if (event.target.classList.contains('place-card__delete-icon')
@@ -185,6 +214,10 @@ import UserInfo from './modules/UserInfo';
             , 1000);
     }
 
+
+    cardsContainer.addEventListener('click', cardsActionsHandler);
+
+    rootContainer.addEventListener('click', isPopupOpen);
 
     document.forms.newPlace.addEventListener('submit', addCardHandler);
 

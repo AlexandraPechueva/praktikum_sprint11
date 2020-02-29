@@ -6,14 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mesto</title>
-  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
 </head>
 
 <body>
   <div class="root">
     <header class="header root__section">
-      <!-- <img src="./images/logo.svg" alt="mesto logo" class="logo"> -->
       <img src="<%=require('./images/logo.svg').default%>" alt="mesto logo" class="logo">
     </header>
     <div class="profile root__section">
@@ -29,24 +27,9 @@
     </div>
     <div class="places-list root__section">
 
-      <!-- Пример вёрстки карточки: -->
-
-      <!-- <div class="place-card">
-        <div class="place-card__image" style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
-          <button class="place-card__delete-icon"></button>
-        </div>
-        <div class="place-card__description">
-          <h3 class="place-card__name">Камчатка</h3>
-          <button class="place-card__like-icon"></button>
-        </div>
-      </div> -->
-
-      <!-- конец примера. -->
-
     </div>
     <div class="popup" id="new-place">
       <div class="popup__content">
-        <!-- <img src="./images/close.svg" alt="close" class="popup__close"> -->
         <img src="<%=require('./images/close.svg').default%>" alt="close" class="popup__close">
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form" name="newPlace">
@@ -67,7 +50,6 @@
 
     <div class="popup" id="edit">
       <div class="popup__content">
-        <!-- <img src="./images/close.svg" alt="close" class="popup__close"> -->
         <img src="<%=require('./images/close.svg').default%>" alt="close" class="popup__close">
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form" name="edit">
@@ -88,9 +70,7 @@
 
     <div class="popup" id="big-photo">
       <div class="popup__content popup__content_image">
-        <!-- <img src="./images/close.svg" alt="close" class="popup__close"> -->
         <img src="<%=require('./images/close.svg').default%>" alt="close" class="popup__close">
-
         <div class="popup__image-container">
           <img src="" alt="place" class="popup__image">
         </div>
@@ -99,9 +79,7 @@
 
     <div class="popup" id="avatar">
       <div class="popup__content">
-        <!-- <img src="./images/close.svg" alt="close" class="popup__close"> -->
         <img src="<%=require('./images/close.svg').default%>" alt="close" class="popup__close">
-
         <h3 class="popup__title">Обновить аватар</h3>
         <form class="popup__form" name="avatar">
           <div class="input-container">
@@ -115,18 +93,5 @@
   </div>
   <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>
-<!-- <script async src="script/Api.js"></script>
-
-<script async src="script/Card.js"></script>
-<script async src="script/CardList.js"></script>
-<script async src="script/Popup.js"></script>
-<script async src="script/PopupCard.js"></script>
-<script async src="script/PopupProfile.js"></script>
-<script async src="script/PopupImage.js"></script>
-<script async src="script/PopupAvatar.js"></script>
-<script async src="script/UserInfo.js"></script>
-
-<script async src="script/FormValidator.js"></script>
-<script async src="script/script.js"></script> -->
 
 </html>

@@ -2,8 +2,8 @@
   "name": "praktikum_webpack",
   "homepage": "https://alexandrapechueva.github.io/praktikum_sprint11/",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "studying project with webpack",
+  "main": "src/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
