@@ -1,4 +1,6 @@
-class PopupProfile extends Popup {
+import Popup from './Popup.js';
+
+export default class PopupProfile extends Popup {
     constructor(userInfo) {
         super();
 
