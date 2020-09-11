@@ -32,7 +32,8 @@ import UserInfo from './modules/UserInfo';
     let myCards = [];
     let allCards = [];
 
-    const serverUrl = NODE_ENV === "development" ? "http://praktikum.tk/cohort7" : "https://praktikum.tk/cohort7";
+    // const serverUrl = NODE_ENV === "development" ? "http://praktikum.tk/cohort7" : "https://praktikum.tk/cohort7";
+    const serverUrl = NODE_ENV === "development" ? "https://nomoreparties.co/cohort7" : "https://nomoreparties.co/cohort7";
 
     const requestData = {
         address: serverUrl,
